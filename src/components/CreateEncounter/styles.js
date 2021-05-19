@@ -4,6 +4,9 @@ export const ContentWrap = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height:95.45%;
+  position: relative;
+ 
 `;
 
 export const TopContainer = styled.div`
@@ -119,6 +122,7 @@ export const Note = styled.textarea`
   width: 100%;
   height: 5.625rem;
   padding: 0.75rem;
+  min-height:200px;
   ::placeholder {
     opacity: 0.5;
   }
@@ -174,6 +178,7 @@ export const PastOrderText = styled.div`
   color: #22335e;
   display: flex;
   justify-content: space-between;
+  height:100%;
   @media (max-width: 768px) {
     font-weight: bold;
     font-size: 0.9375rem;
@@ -202,6 +207,11 @@ export const PastPrescriptionConsultant = styled.div`
 `;
 export const DesktopViewPastPrescription = styled.div`
   display: block;
+  position:absolute;
+  width:100%;
+  bottom:0;
+  max-height:70vh;
+  overflow:scroll;
 `;
 
 export const IconSmall = styled.div`
