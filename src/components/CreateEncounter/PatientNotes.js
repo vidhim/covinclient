@@ -33,7 +33,7 @@ export const PatientNotes = ({
   };
 
   return (
-    <div>
+    <>
       <HeadersComponent image={notesIcon} alt={'notes-icon'} text={'Notes'} />
       <ContentWrap>
         <TopContainer className="position-relative">
@@ -89,7 +89,7 @@ export const PatientNotes = ({
             : null}
         </DesktopViewPastPrescription>
       </ContentWrap>
-    </div>
+    </>
   );
 };
 
