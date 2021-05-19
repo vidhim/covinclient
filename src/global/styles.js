@@ -12,7 +12,7 @@ export const MainConatinerWrapper = styled.main`
 
 export const Wrapper = styled.div`
   width: 100%;
-  padding: 0rem 4rem 1rem 4rem;
+  padding: 0rem 0rem 1rem 0rem;
   @media (max-width: 768px) {
     padding: 3px 0px;
     max-width: auto;

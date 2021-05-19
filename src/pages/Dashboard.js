@@ -32,7 +32,6 @@ const TypeHeader = styled.h3`
   color: #1f3259;
 `;
 const FirstRow = styled.section`
-  padding: 0em 4em;
   width: 100%;
   @media (max-width: 768px) {
     padding: 0em;
@@ -89,7 +88,6 @@ const InputContainer = styled.div`
 `;
 
 const HeaderSearchWrap = styled.div`
-  padding: 0 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

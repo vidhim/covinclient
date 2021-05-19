@@ -6,6 +6,7 @@ import arrowIcon from 'assets/images/svg-icons/arrow-left.svg';
 import collapseIcon from 'assets/images/svg-icons/showMore.svg';
 import expandIcon from 'assets/images/svg-icons/showLess.svg';
 import mobileIcon from 'assets/images/svg-icons/icon-phone.svg';
+import checkedIcon from 'assets/images/svg-icons/checkedIcon.svg';
 import {
   GENDER_SHORTHAND,
   PATIENT_CURRENT_STATUS,
@@ -73,8 +74,12 @@ const ShowLessMore = styled.img`
   }
 `;
 
+const CheckIcon = styled.img``;
+
 const RiskLevelWrap = styled.div`
   display: flex;
+  position: relative;
+  width: 7rem;
   @media (max-width: 768px) {
     margin-bottom: 1.875rem;
   }
@@ -101,25 +106,6 @@ const RiskLevelWrap = styled.div`
   input[type='radio']:checked:before {
     background: #22335e;
   }
-`;
-
-const RadioLabel = styled.label`
-  display: flex;
-  margin-right: 2rem;
-  align-items: center;
-  @media (max-width: 768px) {
-    margin-right: 0.5rem;
-  }
-`;
-const RadioInput = styled.input`
-  margin-right: 0.625rem;
-`;
-
-const OptionName = styled.span`
-  text-transform: capitalize;
-  color: ${(props) => (props.checked ? '#22335E' : '#657396')};
-  font-size: 1rem;
-  line-height: 1.25rem;
 `;
 
 const Button = styled.button`
@@ -197,6 +183,34 @@ const MobAgeAndGender = styled.div`
   }
 `;
 
+const ShowRiskLevelDropdown = styled.div`
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(101, 115, 150, 0.3);
+  border-radius: 5px;
+  position: absolute;
+  margin-top: 2rem;
+  padding: 1rem;
+  z-index: 10;
+  left: -50%;
+  width: 15.188rem;
+`;
+
+const DropdownContent = styled.div`
+  background: ${(props) =>
+    props.riskLevel === props.radio ? '#f2f7fd' : '#fff'};
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
+`;
+
+const RiskLevelTextStyle = styled.div`
+  font-size: 1.25rem;
+  line-height: 1.875rem;
+  color: #01518d;
+`;
+
 export const PersonalInformation = ({
   data,
   setRiskLevel,
@@ -205,8 +219,10 @@ export const PersonalInformation = ({
   dispatch,
 }) => {
   const [isShowMore, setIsShowMore] = useState(false);
+  const [showRiskLevel, setShowRiskLevel] = useState(false);
   const radioMenu = Object.values(RISK);
   const toggleShowMore = () => setIsShowMore((state) => !state);
+  const toggleRiskLevelIcon = () => setShowRiskLevel((state) => !state);
   const onCall = useCallback(
     () => handleCallAppointment(dispatch, data?.patientId),
     [dispatch, data],
@@ -242,23 +258,31 @@ export const PersonalInformation = ({
           </Info>
         </MobAgeAndGender>
         <RiskLevelWrap>
-          {radioMenu.map((radio, index) => {
-            return (
-              <RadioLabel for={radio} key={index}>
-                <RadioInput
-                  type="radio"
-                  name="option"
-                  value={radio}
-                  id={radio}
-                  checked={riskLevel === radio}
-                  onChange={() => setRiskLevel(radio)}
-                />
-                <OptionName checked={riskLevel === radio}>
-                  {radio} Risk
-                </OptionName>
-              </RadioLabel>
-            );
-          })}
+          <div
+            className="d-flex justify-content-between"
+            style={{ width: '100%' }}>
+            <RiskLevelTextStyle>{riskLevel}</RiskLevelTextStyle>
+            <ShowLessMore
+              src={showRiskLevel ? expandIcon : collapseIcon}
+              onClick={toggleRiskLevelIcon}
+            />
+          </div>
+          {showRiskLevel && (
+            <ShowRiskLevelDropdown>
+              {radioMenu.map((radio, index) => {
+                return (
+                  <DropdownContent
+                    radio={radio}
+                    key={index}
+                    riskLevel={riskLevel}
+                    onClick={() => setRiskLevel(radio)}>
+                    <div>{radio}</div>
+                    {riskLevel === radio && <CheckIcon src={checkedIcon} />}
+                  </DropdownContent>
+                );
+              })}
+            </ShowRiskLevelDropdown>
+          )}
         </RiskLevelWrap>
         <CommunicationButtons onCall={onCall} />
         <Button onClick={onSave}>SAVE AND CLOSE</Button>

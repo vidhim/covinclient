@@ -10,7 +10,6 @@ import mobileIcon from 'assets/images/svg-icons/icon-phone.svg';
 import './index.css';
 
 const Wrapper = styled.section`
-  padding: 0 4rem;
   width: 100%;
 `;
 
