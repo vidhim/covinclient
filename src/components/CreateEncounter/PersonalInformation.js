@@ -213,6 +213,7 @@ const RiskLevelTextStyle = styled.div`
 
 export const PersonalInformation = ({
   data,
+  handleRiskLevelChange,
   setRiskLevel,
   riskLevel,
   onSave,

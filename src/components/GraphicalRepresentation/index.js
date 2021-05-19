@@ -32,7 +32,7 @@ const GraphicalRepresentation = (props) => {
     desktopViewLabelsForPatientsWithCurrentStats,
   } = props;
 
-  return (
+  return data?.vitals ? (
     <>
       {data &&
         data?.vitals &&
@@ -98,7 +98,7 @@ const GraphicalRepresentation = (props) => {
           );
         })}
     </>
-  );
+  ) : null;
 };
 
 export { GraphicalRepresentation };
