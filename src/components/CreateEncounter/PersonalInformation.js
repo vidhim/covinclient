@@ -218,6 +218,7 @@ export const PersonalInformation = ({
   data,
   setRiskLevel,
   riskLevel,
+  handleRiskLevelChange,
   onSave,
   dispatch,
 }) => {
@@ -278,7 +279,8 @@ export const PersonalInformation = ({
                     radio={radio}
                     key={index}
                     riskLevel={riskLevel}
-                    onClick={() => setRiskLevel(radio)}>
+                    onClick={() => setRiskLevel(radio)}
+                    onChange={() => handleRiskLevelChange(radio)}>
                     <div>{radio}</div>
                     {riskLevel === radio && <CheckIcon src={checkedIcon} />}
                   </DropdownContent>
