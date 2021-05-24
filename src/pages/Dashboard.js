@@ -93,6 +93,10 @@ const HeaderSearchWrap = styled.div`
   align-items: center;
 `;
 
+const DashboardWrapper = styled.div`
+  padding: 0em 5.5em 1em;
+`;
+
 const DashBoardComponent = () => {
   const dispatch = useDispatch();
   const [searchText, setSearchText] = useState('');
@@ -132,60 +136,62 @@ const DashBoardComponent = () => {
 
   return (
     <DashboardLayout>
-      <FirstRow>
-        <Headings>
-          <InfoWrapper>
-            <ViewName>Dashboard</ViewName>
-            <DateAndTimeWrap>
-              <TimeImage src={time} />
-              <DateAndTime>{getDate()}</DateAndTime>
-            </DateAndTimeWrap>
-          </InfoWrapper>
-          <CasesCardComponent
-            casesCardData={patientRiskData}
-            changesCases={changesCases}
-            selectedCases={selectedCases}
-          />
-          <SearchWrapper>
-            <CasesHeader>{selectedCases} Cases</CasesHeader>
-            <SearchInput
-              placeholder="Search"
-              searchText={searchText}
-              onChange={handleSearchText}
-              searchRef={searchRef}
-            />
-          </SearchWrapper>
-        </Headings>
-      </FirstRow>
-
-      {/* Doctors View - Patients List along with current conditions */}
-      <PatientsWrapper>
-        {filteredPatients?.map((patient) => (
-          <PatientCard key={patient.patientId} patient={patient} />
-        ))}
-      </PatientsWrapper>
-      <DeskTopViewPatient>
-        {patients ? (
-          <>
-            <HeaderSearchWrap className="w-100 mb-3">
-              <TypeHeader>{selectedCases} Risk Cases</TypeHeader>
-              <InputContainer>
-                <SearchInput
-                  customClass="w-100"
-                  placeholder="Search"
-                  searchText={searchText}
-                  onChange={handleSearchText}
-                  searchRef={searchRef}
-                />
-              </InputContainer>
-            </HeaderSearchWrap>
-            <DesktopPatientTable
-              selectedCaseData={filteredPatients}
+      <DashboardWrapper>
+        <FirstRow>
+          <Headings>
+            <InfoWrapper>
+              <ViewName>Dashboard</ViewName>
+              <DateAndTimeWrap>
+                <TimeImage src={time} />
+                <DateAndTime>{getDate()}</DateAndTime>
+              </DateAndTimeWrap>
+            </InfoWrapper>
+            <CasesCardComponent
+              casesCardData={patientRiskData}
+              changesCases={changesCases}
               selectedCases={selectedCases}
             />
-          </>
-        ) : null}
-      </DeskTopViewPatient>
+            <SearchWrapper>
+              <CasesHeader>{selectedCases} Cases</CasesHeader>
+              <SearchInput
+                placeholder="Search"
+                searchText={searchText}
+                onChange={handleSearchText}
+                searchRef={searchRef}
+              />
+            </SearchWrapper>
+          </Headings>
+        </FirstRow>
+
+        {/* Doctors View - Patients List along with current conditions */}
+        <PatientsWrapper>
+          {filteredPatients?.map((patient) => (
+            <PatientCard key={patient.patientId} patient={patient} />
+          ))}
+        </PatientsWrapper>
+        <DeskTopViewPatient>
+          {patients ? (
+            <>
+              <HeaderSearchWrap className="w-100 mb-3">
+                <TypeHeader>{selectedCases} Risk Cases</TypeHeader>
+                <InputContainer>
+                  <SearchInput
+                    customClass="w-100"
+                    placeholder="Search"
+                    searchText={searchText}
+                    onChange={handleSearchText}
+                    searchRef={searchRef}
+                  />
+                </InputContainer>
+              </HeaderSearchWrap>
+              <DesktopPatientTable
+                selectedCaseData={filteredPatients}
+                selectedCases={selectedCases}
+              />
+            </>
+          ) : null}
+        </DeskTopViewPatient>
+      </DashboardWrapper>
     </DashboardLayout>
   );
 };

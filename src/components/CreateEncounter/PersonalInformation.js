@@ -190,7 +190,7 @@ const ShowRiskLevelDropdown = styled.div`
   border-radius: 5px;
   position: absolute;
   margin-top: 2rem;
-  padding: 1rem;
+  padding: 1.5rem;
   z-index: 10;
   left: -50%;
   width: 15.188rem;
@@ -202,19 +202,20 @@ const DropdownContent = styled.div`
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
+  fontsize: 1rem;
+  color: ${(props) =>
+    props.riskLevel === props.radio ? '#22335E' : '#657396'};
 `;
 
 const RiskLevelTextStyle = styled.div`
-  font-size: 1.25rem;
-  line-height: 1.875rem;
-  color: #01518d;
+  font-size: 1rem;
+  color: #657396;
 `;
 
 export const PersonalInformation = ({
   data,
-  handleRiskLevelChange,
   setRiskLevel,
   riskLevel,
   onSave,
