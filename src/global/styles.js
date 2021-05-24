@@ -20,7 +20,7 @@ export const WebViewWrap = styled.div`
 
 export const Wrapper = styled.div`
   width: 100%;
-  padding: 0rem 0rem 1rem 0rem;
+  padding: 0rem 5.5rem 1rem 5.5rem;
   @media (max-width: 768px) {
     padding: 3px 0px;
     max-width: auto;
